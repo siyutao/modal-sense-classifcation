@@ -80,12 +80,12 @@ def word2vec_emb_vocab(vocabulary, dim, emb_type):
 
     if emb_type == "w2v":
         logging.info("Loading pre-trained w2v binary file...")
-        w2v_model = models.Word2Vec.load_word2vec_format('../embeddings/GoogleNews-vectors-negative300.bin', binary=True)
+        w2v_model = models.KeyedVectors.load_word2vec_format('../embeddings/GoogleNews-vectors-negative300.bin', binary=True)
 
     else:
         # convert glove vecs into w2v format: https://github.com/manasRK/glove-gensim/blob/master/glove-gensim.py
         glove_file = "../embeddings/glove/glove_"+str(dim)+"_w2vformat.txt"
-        w2v_model = models.Word2Vec.load_word2vec_format(glove_file, binary=False)  # GloVe Model
+        w2v_model = models.KeyedVectors.load_word2vec_format(glove_file, binary=False)  # GloVe Model
 
     emb_w2v = w2v_model.wv.syn0
 
